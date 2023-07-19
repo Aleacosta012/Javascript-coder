@@ -11,18 +11,17 @@ function calculadoraIva(){
         alert (`El valor sin IVA es: ${100*valor/122}`)
         }
         else if (valor!= "FIN"){
-            alert ("El valor debe ser un numero mayor a 0")
+            alert ("El valor debe ser un número mayor a 0")
             }
 
         else if(valor = "FIN"){
         bucle = false
-        alert("El programa finalizo")
+        alert("El programa finalizó")
         }
 
        
     }
 }
-
 
 console.log(calculadoraIva())
 
