@@ -1,0 +1,39 @@
+#title{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+#formulario{
+    text-align: center;
+    margin-top: 210px;
+}
+
+.banderas{
+    width: 100px;
+    height: 75px;
+}
+
+input[type="radio"]{
+    opacity: 1;
+}
+
+
+.nombrePais{
+    padding: 0  40px 0 25px;
+
+
+}
+.banderas:hover{
+    cursor: pointer;
+}
+.nombrePais:hover{
+    color: blue;
+    cursor: pointer; 
+}

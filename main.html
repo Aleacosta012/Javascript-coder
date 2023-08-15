@@ -1,12 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="main.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora IVA</title>
 </head>
 <body>
+     <header id="title">
+        <h1 >Calculadora de IVA</h1>
+        <h3>En esta calculadora tu podras saber el monto sin IVA de la compra que realizaste</h3>
+        <h3>Asi podras saber cuanto es el IVA de la misma</h3>
+    </header>
+
+    <body>
+
+        
+        <div id="formulario">
+            <h2>Elije tu pais</h2>
+                <div id="paises">
+                
+                        <input type="radio" name="pais" id="uruguay">
+                        <label for="uruguay">  <img class="banderas" src="uru.png" alt="Bandera de Uruguay"></label>
+
+                
+                        <input type="radio" name="pais" id="argentina">
+                        <label for="argentina"><img class="banderas" src="arg.png" alt="Bandera de Argentina"></label>
+
+                
+                        <input type="radio" name="pais" id="chile">
+                        <label for="chile"><img class="banderas" src="chi.png" alt="Bandera de Chile"></label>
+
+                </div>
+
+            <form>
+                <br><br>
+              <label for="monto" id="">Ingresa el monto de tu compra</label><br>
+              <input type="number" class="form-control" id="monto"><br><br>
+              <button type="button" id="boton">Enviar
+              </button>
+              <button type="button" id="valAnt">Ver valor anterior</button>
+            </form>
+        </div>
+        
     
     <script src="main.js"></script>
+
+    
 </body>
 </html>
