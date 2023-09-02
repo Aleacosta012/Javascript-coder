@@ -1,0 +1,19 @@
+[{
+    "pais":"Uruguay",
+    "paisid":"uruguay",
+    "iva":122,
+    "img": "uru.png"
+},
+{
+    "pais":"Argentina",
+    "paisid":"argentina",
+    "iva":121,
+    "img": "arg.png"
+},
+{
+    "pais":"Chile",
+    "paisid":"chile",
+    "iva":119,
+    "img": "chi.png"
+}
+]

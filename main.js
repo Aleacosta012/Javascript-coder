@@ -46,54 +46,115 @@
 console.log(calculadoraIva())*/
 
 
+let paises = document.getElementById("paises")
+fetch("paises.json")
+ 
+.then((resp) =>resp.json())
+.then((data) =>{
+ console.log(data)
 
+ data.map((item)=>{
+  let div =document.createElement("div")
+  div.className="flex-column"
 
-function calculadoraIva(){
+  div.innerHTML=`
+  <input type="radio" name="pais" id=${item.paisid} class="radio-checked">
+  <label for=${item.paisid}> <img class="banderas" src="${item.img}"></img></label>
+  <label class=${item.paisid} for=${item.paisid}>${item.pais}</label>
+  
+  `
+  paises.appendChild(div)
  
   
+   })
+
+   
+ }).catch(()=>{
+  Swal.fire({
+    icon: 'error',
+    title: 'Oops...',
+    text: 'Hubo un problema al cargar la pagina',
+    footer:'<a href=main.html>Prueba recargando la pagina</a>'
+  
+  });
+ })
+
+ /*Esta parte de codigo, me quedo sin funcionar, cuando tenia los paises agregados en el html cargaban sin problema, al 
+ agregarlos de forma dinamica, no me funciono mas */ 
+const radioButtons = document.querySelectorAll("input[type='radio']");
+
+radioButtons.forEach((b) => {
+  b.addEventListener("change", function () {
+    const buttonId = b.getAttribute("id");
+    const label = document.querySelector(`label.${buttonId}`);
+    if (this.checked) {
+      label.classList.add("color");
+    }
+
+    const rest = document.querySelectorAll("input[type='radio']:not(:checked)")
+    rest.forEach((b)=>{
+      const buttonId = b.getAttribute("id");
+      const label = document.querySelector(`label.${buttonId}`);
+      label.classList.remove('color')
+    })
+
+
+  });
+});
+/*Aca finaliza la parte de codigo que no me funciona*/
+
+
+function calculadoraIva() {
   let iva;
  
-  
-  let uruguay = document.getElementById("uruguay")
-  let argentina = document.getElementById("argentina")
-  let chile = document.getElementById("chile")
-  
-  let array =  [{pais: "uruguay", iva: 122},
-                {pais: "argentina", iva: 121},
-                {pais: "chile", iva: 119}];
-  
-  let paisSeleccionado
-  paisSeleccionado = document.querySelector(".radio:checked")
+  let paisSeleccionado;
+  paisSeleccionado = document.querySelector(`input[type='radio']:checked`);
+  paisSeleccionado = paisSeleccionado.getAttribute("id");
 
-   if (paisSeleccionado = uruguay){
-    iva = 122
-   }
-   else if( paisSeleccionado = argentina){
-    iva = 121
-   }
-   else if(paisSeleccionado = chile){
-    iva = 119
-   }
-
-
-  let monto = document.getElementById("monto")
-  let valor = monto.value
-  let valSin
-
-      if( monto.value > 0){
-
-      alert (`El valor sin IVA es: ${100*valor/iva}`)
-      valSin = 100*valor/iva
-      }
-      else{
-          alert ("El valor debe ser un número mayor a 0")
-          }
-    localStorage.setItem("Monto sin IVA", valSin)
-    localStorage.setItem("Monto con IVA", monto.value)
+let ivaMapping ={
+  uruguay : 122,
+  argentina:121,
+  chile:119
 }
 
-let boton =document.getElementById("boton")
-let valAnt = document.getElementById("valAnt")
+iva =ivaMapping[paisSeleccionado]
+  
 
-valAnt.addEventListener("click", ()=>{ alert("El valor con IVA anterior es = "+ localStorage.getItem("Monto con IVA") + " y el valor sin IVA es = "+ localStorage.getItem("Monto sin IVA"))})
-boton.addEventListener("click", calculadoraIva)
+  let monto = document.getElementById("monto");
+  let valor = monto.value;
+  let valSin;
+
+  if (valor > 0) {
+    Swal.fire(`El valor sin IVA es: ${(100 * valor) / iva}`);
+    valSin = (100 * valor) / iva;
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'El valor debe ser un numero mayor a 0',
+    
+    });
+  }
+  localStorage.setItem("Monto sin IVA", valSin);
+  localStorage.setItem("Monto con IVA", valor);
+}
+
+document.get;
+let boton = document.getElementById("boton");
+let valAnt = document.getElementById("valAnt");
+let form = document.getElementsByTagName("form");
+
+form[0].addEventListener("submit", (e) => {
+  e.preventDefault();
+  calculadoraIva();
+});
+
+valAnt.addEventListener("click", () => {
+  Swal.fire(
+    "El valor con IVA anterior es = " +
+      localStorage.getItem("Monto con IVA") +
+      " y el valor sin IVA es = " +
+      localStorage.getItem("Monto sin IVA")
+  );
+});
+boton.addEventListener("click", calculadoraIva);
